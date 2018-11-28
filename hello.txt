@@ -1,2 +1,3 @@
 "welcome"
 "hello"
+"what's news"
