@@ -1,5 +1,0 @@
-"welcome"
-"hello"
-"what's news"
-"next"
-"double"
