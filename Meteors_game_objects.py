@@ -1,5 +1,5 @@
 import pygame
-import _7_1_setting as setting
+import Meteors_setting as setting
 from random import randint
 
 class Background(pygame.sprite.Sprite):

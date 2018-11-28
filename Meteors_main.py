@@ -1,7 +1,7 @@
 import pygame
 import pyganim
-import _7_1_setting as setting
-import _7_2_game_objects as objects
+import Meteors_setting as setting
+import Meteors_game_objects as objects
 
 # init
 pygame.init()
