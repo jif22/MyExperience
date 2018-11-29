@@ -1,7 +1,7 @@
 import pygame
 import pyganim
-import Meteors_setting as setting
-import Meteors_game_objects as objects
+import res.Meteors_setting as setting
+import res.Meteors_game_objects as objects
 
 # init
 pygame.init()
