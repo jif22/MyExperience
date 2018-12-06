@@ -1,0 +1,14 @@
+*{
+	min-height: 100%;
+}
+body{
+	min-width: 100px;
+	width: 100%;
+	min-height: 100px;
+	height: 100%;
+}
+.new{
+	width: 100px;
+	height: 100px;
+	background-color: #ccc;
+}
