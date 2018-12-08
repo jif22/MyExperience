@@ -1,4 +1,4 @@
-body{
+html, body{
 	width: 100%;
 	background-color: #e7e7e7;
 }
@@ -26,7 +26,7 @@ button{
 	width: 75px;
 	border: 1px solid #4c4c4c;
 }
-input[type="text"]{
+.form input[type="text"]{
 	height: 21px;
 	background-color: #323232;
 	border: 1px solid #4c4c4c;
@@ -43,7 +43,7 @@ input[type="text"]{
 	display: flex;
 	justify-content: center;
 }
-p{
+.carousel-caption p{
 	font-weight: 600;
 }
 .carousel-caption{
@@ -207,4 +207,58 @@ table tr:hover{
 }
 ::placeholder{
 	padding-left: 20px;
+}
+
+/* About page */
+
+i{
+    font-style: italic;
+}
+.about{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    height: auto;
+}
+.about img{
+    margin-right: 15px;
+    border: 10px solid #e2e2e2;
+    float: left;
+}
+.about p{
+    margin-left: 15px;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    width: 100%;
+    float: left;
+}
+
+/* Work page */
+
+.text2{
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 15px;
+}
+
+/* Blog page */
+
+.description1{
+    margin-top: 10px;
+}
+
+/* Contact page */
+
+.maintext form{
+    margin-left: 15px;
+    margin-top: 10px;
+}
+
+.maintext input[type="textarea"]{
+    height: 80px;
+    overflow: auto;
+}
+
+.lastb{
+    margin: 10px;
 }
