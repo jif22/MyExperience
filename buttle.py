@@ -1,8 +1,39 @@
-b1 = ['b', 'b', 'b', 'b']
-b2 = ['g', 'g', 'g', 'g']
-b3 = ['r', 'r', 'r', 'r']
-b4 = ['0', '0', '0', '0']
-b5 = ['0', '0', '0', '0']
+b1 = ['0', 'b', 'b', 'b']
+b2 = ['0', '0', 'g', 'g']
+b3 = ['0', 'r', 'r', 'r']
+b4 = ['0', '0', 'g', 'b']
+b5 = ['0', '0', 'g', 'r']
+flag1 = False
+flag2 = False
+flag3 = False
+flag4 = False
+flag5 = False
+
+def checkWin():
+  if (b1[0] == b1[1] and b1[0] == b1[2] and b1[0] == b1[3]):
+    flag1 = True
+  else:
+    flag1 = False
+  if (b2[0] == b2[1] and b2[0] == b2[2] and b2[0] == b2[3]):
+    flag2 = True
+  else:
+    flag2 = False
+  if (b3[0] == b3[1] and b3[0] == b3[2] and b3[0] == b3[3]):
+    flag3 = True
+  else:
+    flag3 = False
+  if (b4[0] == b4[1] and b4[0] == b4[2] and b4[0] == b4[3]):
+    flag4 = True
+  else:
+    flag4 = False
+  if (b5[0] == b5[1] and b5[0] == b5[2] and b5[0] == b5[3]):
+    flag5 = True
+  else:
+    flag5 = False
+  
+  if (flag1 and flag2 and flag3 and flag4 and flag5):
+    return True
+  return False
 
 def showButs():
   i = 0
@@ -29,6 +60,11 @@ def indexSecondBut(but:list):
 
 while True: 
   showButs()
+  win = checkWin()
+  if win:
+    print('You Win')
+    break
+
   firstSel = input('введите с какой колбы берем: ')
   secondSel = input('введите в какую колбу наливаем: ')
   if secondSel == '1':
@@ -140,8 +176,8 @@ while True:
     if secondElIndex == -1:
       print('Second bottle is full')
       continue
-    if secondElIndex == 3 or sec[secondElIndex + 1] == b4[firstElIndex]:
-      sec[secondElIndex] = b4[firstElIndex]
-      b4[firstElIndex] = '0'
+    if secondElIndex == 3 or sec[secondElIndex + 1] == b5[firstElIndex]:
+      sec[secondElIndex] = b5[firstElIndex]
+      b5[firstElIndex] = '0'
     else:
       print("It's not the same color")
