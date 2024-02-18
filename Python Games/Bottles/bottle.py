@@ -7,7 +7,6 @@ b6 = ['0', '0', 'y', 'y']
 b7 = ['0', '0', 'y', 'y']
 listOfSel = [b1, b2, b3, b4, b5, b6, b7]
 
-
 def checkWin():
   countOfWin = 0
   for i in listOfSel:
