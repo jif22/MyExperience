@@ -1,15 +1,16 @@
 import random
+from colorama import Fore, Style, Back, init
 
-b1 = ['[b]', '[b]', '[b]', '[b]']
-b2 = ['[g]', '[g]', '[g]', '[g]']
-b3 = ['[r]', '[r]', '[r]', '[r]']
-b4 = ['[ ]', '[q]', '[q]', '[q]']
-b5 = ['[v]', '[v]', '[v]', '[v]']
-b6 = ['[ ]', '[z]', '[z]', '[z]']
-b7 = ['[y]', '[y]', '[y]', '[y]']
-b8 = ['[a]', '[a]', '[a]', '[a]']
-b9 = ['[ ]', '[ ]', '[ ]', '[q]']
-b10 = ['[ ]', '[ ]', '[ ]', '[z]']
+b1 = ['[' + Fore.BLUE + 'b' + Style.RESET_ALL + ']', '[' + Fore.BLUE + 'b' + Style.RESET_ALL + ']', '[' + Fore.BLUE + 'b' + Style.RESET_ALL + ']', '[' + Fore.BLUE + 'b' + Style.RESET_ALL + ']']
+b2 = ['[' + Fore.GREEN + 'g' + Style.RESET_ALL + ']', '[' + Fore.GREEN + 'g' + Style.RESET_ALL + ']', '[' + Fore.GREEN + 'g' + Style.RESET_ALL + ']', '[' + Fore.GREEN + 'g' + Style.RESET_ALL + ']']
+b3 = ['[' + Fore.RED + 'r' + Style.RESET_ALL + ']', '[' + Fore.RED + 'r' + Style.RESET_ALL + ']', '[' + Fore.RED + 'r' + Style.RESET_ALL + ']', '[' + Fore.RED + 'r' + Style.RESET_ALL + ']']
+b4 = ['[' + Fore.WHITE + 'w' + Style.RESET_ALL + ']', '[' + Fore.WHITE + 'w' + Style.RESET_ALL + ']', '[' + Fore.WHITE + 'w' + Style.RESET_ALL + ']', '[' + Fore.WHITE + 'w' + Style.RESET_ALL + ']']
+b5 = ['[' + Fore.LIGHTBLACK_EX + 'a' + Style.RESET_ALL + ']', '[' + Fore.LIGHTBLACK_EX + 'a' + Style.RESET_ALL + ']', '[' + Fore.LIGHTBLACK_EX + 'a' + Style.RESET_ALL + ']', '[' + Fore.LIGHTBLACK_EX + 'a' + Style.RESET_ALL + ']']
+b6 = ['[' + Fore.CYAN + 'c' + Style.RESET_ALL + ']', '[' + Fore.CYAN + 'c' + Style.RESET_ALL + ']', '[' + Fore.CYAN + 'c' + Style.RESET_ALL + ']', '[' + Fore.CYAN + 'c' + Style.RESET_ALL + ']']
+b7 = ['[' + Fore.YELLOW + 'y' + Style.RESET_ALL + ']', '[' + Fore.YELLOW + 'y' + Style.RESET_ALL + ']', '[' + Fore.YELLOW + 'y' + Style.RESET_ALL + ']', '[' + Fore.YELLOW + 'y' + Style.RESET_ALL + ']']
+b8 = ['[' + Fore.MAGENTA + 'm' + Style.RESET_ALL + ']', '[' + Fore.MAGENTA + 'm' + Style.RESET_ALL + ']', '[' + Fore.MAGENTA + 'm' + Style.RESET_ALL + ']', '[' + Fore.MAGENTA + 'm' + Style.RESET_ALL + ']']
+b9 = ['[ ]', '[ ]', '[ ]', '[ ]']
+b10 = ['[ ]', '[ ]', '[ ]', '[ ]']
 listOfSel = [b1, b2, b3, b4, b5, b6, b7, b8, b9, b10]
 
 def checkWin():
@@ -49,24 +50,26 @@ def indexSecondBut(but:list):
 def change(selectedOne:int, selectedTwo:list):
   b = listOfSel[selectedOne]
   if b is selectedTwo:
-    print("I can't pour it into the same bottle.")
+    print(Style.BRIGHT + Fore.RED + "I can't pour it into the same bottle." + Style.RESET_ALL)
     return
   firstElIndex = indexFirstBut(b)
   if firstElIndex == -1:
-    print('First bottle is empty')
+    print(Style.BRIGHT + Fore.RED + 'First bottle is empty' + Style.RESET_ALL)
     return
   secondElIndex = indexSecondBut(selectedTwo)
   if secondElIndex == -1:
-    print('Second bottle is full')
+    print(Style.BRIGHT + Fore.RED + 'Second bottle is full' + Style.RESET_ALL)
     return
   if secondElIndex == 3 or selectedTwo[secondElIndex + 1] == b[firstElIndex]:
     selectedTwo[secondElIndex] = b[firstElIndex]
     b[firstElIndex] = '[ ]'
   else:
-    print("It's not the same color")
+    print(Style.BRIGHT + Fore.RED + "It's not the same color" + Style.RESET_ALL)
 
 def newGame():
+  # Количество запутанности в начале игры.
   countOfChange = 10
+  
   while countOfChange > 0:
     flag = True
     while flag:
@@ -93,13 +96,19 @@ def newGame():
         break
       f -= 1
     countOfChange -= 1
-  
+
+# Здесь начинается программа
+init()
 newGame()
 while True: 
   showButs()
   win = checkWin()
   if win:
-    print('You Win')
+    print()
+    print(Back.WHITE + '                                               ' + Back.RESET)
+    print(Back.BLUE +  '                    You Win                    ' + Back.RESET)
+    print(Back.RED +   '                                               ' + Back.RESET)
+    print()
     break
 
   firstSel = input('введите с какой колбы берем: ')
@@ -116,7 +125,7 @@ while True:
       secondSel == "10"):
     sec = listOfSel[int(secondSel) - 1]
   else:
-    print('incorrect second input')
+    print(Style.BRIGHT + Fore.RED + 'incorrect second input' + Style.RESET_ALL)
     continue
 
   if (firstSel != '1' and firstSel != '2' and 
@@ -124,7 +133,8 @@ while True:
       firstSel != '5' and firstSel != '6' and 
       firstSel != '7' and firstSel != '8' and 
       firstSel != '9' and firstSel != '10'):
-    print('incorrect first input')
+    print(Style.BRIGHT + Fore.RED + 'incorrect first input' + Style.RESET_ALL)
     continue
   
   change(int(firstSel) - 1, sec)
+input('Нажмите любую клавишу для завершения программы')
