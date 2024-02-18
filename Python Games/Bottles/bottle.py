@@ -1,46 +1,29 @@
-b1 = ['b', 'b', 'b', 'b']
-b2 = ['g', 'g', 'g', 'g']
-b3 = ['r', 'r', 'r', 'r']
-b4 = ['0', '0', '0', '0']
-b5 = ['0', '0', '0', '0']
-flag1 = False
-flag2 = False
-flag3 = False
-flag4 = False
-flag5 = False
+b1 = ['0', 'b', 'b', 'b']
+b2 = ['0', '0', 'g', 'g']
+b3 = ['0', '0', 'r', 'r']
+b4 = ['0', 'r', 'g', 'r']
+b5 = ['0', '0', 'b', 'g']
+b6 = ['0', '0', 'y', 'y']
+b7 = ['0', '0', 'y', 'y']
+listOfSel = [b1, b2, b3, b4, b5, b6, b7]
+
 
 def checkWin():
-  if (b1[0] == b1[1] and b1[0] == b1[2] and b1[0] == b1[3]):
-    flag1 = True
-  else:
-    flag1 = False
-  if (b2[0] == b2[1] and b2[0] == b2[2] and b2[0] == b2[3]):
-    flag2 = True
-  else:
-    flag2 = False
-  if (b3[0] == b3[1] and b3[0] == b3[2] and b3[0] == b3[3]):
-    flag3 = True
-  else:
-    flag3 = False
-  if (b4[0] == b4[1] and b4[0] == b4[2] and b4[0] == b4[3]):
-    flag4 = True
-  else:
-    flag4 = False
-  if (b5[0] == b5[1] and b5[0] == b5[2] and b5[0] == b5[3]):
-    flag5 = True
-  else:
-    flag5 = False
-  
-  if (flag1 and flag2 and flag3 and flag4 and flag5):
+  countOfWin = 0
+  for i in listOfSel:
+    if (i[0] == i[1] and i[0] == i[2] and i[0] == i[3]):
+      countOfWin += 1
+
+  if countOfWin == 7:
     return True
   return False
 
 def showButs():
   i = 0
   while i < 4:
-    print(b1[i] + '  ' + b2[i] + '  ' + b3[i] + '  ' + b4[i] + '  ' + b5[i])
+    print(b1[i] + '  ' + b2[i] + '  ' + b3[i] + '  ' + b4[i] + '  ' + b5[i] + '  ' + b6[i] + '  ' + b7[i])
     i += 1
-  print('1  ' + '2  ' + '3  ' + '4  ' + '5')
+  print('1  ' + '2  ' + '3  ' + '4  ' + '5  ' + '6  ' + '7')
 
 def indexFirstBut(but:list):
   q = 0
@@ -58,22 +41,22 @@ def indexSecondBut(but:list):
     q -= 1
   return -1
 
-def change(selectedOne, selectedTwo):
-  listOfSel = [b1, b2, b3, b4, b5]
-  if listOfSel[int(selectedOne) - 1] is selectedTwo:
+def change(selectedOne:int, selectedTwo:list):
+  b = listOfSel[selectedOne]
+  if b is selectedTwo:
     print("I can't pour it into the same bottle.")
-    continue
-  firstElIndex = indexFirstBut(listOfSel[int(selectedOne)])
+    return
+  firstElIndex = indexFirstBut(b)
   if firstElIndex == -1:
     print('First bottle is empty')
-    continue
-  secondElIndex = indexSecondBut(sec)
+    return
+  secondElIndex = indexSecondBut(selectedTwo)
   if secondElIndex == -1:
     print('Second bottle is full')
-    continue
-  if secondElIndex == 3 or sec[secondElIndex + 1] == listOfSel[selectedOne][firstElIndex]:
-    sec[secondElIndex] = listOfSel[selectedOne][firstElIndex]
-    listOfSel[selectedOne][firstElIndex] = '0'
+    return
+  if secondElIndex == 3 or selectedTwo[secondElIndex + 1] == b[firstElIndex]:
+    selectedTwo[secondElIndex] = b[firstElIndex]
+    b[firstElIndex] = '0'
   else:
     print("It's not the same color")
 
@@ -86,116 +69,23 @@ while True:
 
   firstSel = input('введите с какой колбы берем: ')
   secondSel = input('введите в какую колбу наливаем: ')
-  tempListB = [b1, b2, b3, b4, b5]
-  if secondSel == "1" or
-     secondSel == "2" or
-     secondSel == "3" or
-     secondSel == "4" or
-     secondSel == "5":
-    sec = tempListB[int(secondSel)]
+  if (secondSel == "1" or
+      secondSel == "2" or
+      secondSel == "3" or
+      secondSel == "4" or
+      secondSel == "5" or
+      secondSel == "6" or
+      secondSel == "7"):
+    sec = listOfSel[int(secondSel) - 1]
   else:
     print('incorrect second input')
     continue
 
-  if firstSel != '1' and firstSel != '2' and firstSel != '3' and firstSel != '4' and firstSel != '5':
+  if (firstSel != '1' and firstSel != '2' and 
+      firstSel != '3' and firstSel != '4' and 
+      firstSel != '5' and firstSel != '6' and 
+      firstSel != '7'):
     print('incorrect first input')
     continue
   
-  change(firstSel, sec)
-# По идее дальнейший код не нужен, его удалить
-# ----------------------------------
-  if firstSel == '1':
-    if b1 is sec:
-      print("I can't pour it into the same bottle.")
-      continue
-    firstElIndex = indexFirstBut(b1)
-    if firstElIndex == -1:
-      print('First bottle is empty')
-      continue
-    secondElIndex = indexSecondBut(sec)
-    if secondElIndex == -1:
-      print('Second bottle is full')
-      continue
-    if secondElIndex == 3 or sec[secondElIndex + 1] == b1[firstElIndex]:
-      sec[secondElIndex] = b1[firstElIndex]
-      b1[firstElIndex] = '0'
-    else:
-      print("It's not the same color")
-    
-
-# ----------------------------------
-  elif firstSel == '2':
-    if b2 is sec:
-      print("I can't pour it into the same bottle.")
-      continue
-    firstElIndex = indexFirstBut(b2)
-    if firstElIndex == -1:
-      print('First bottle is empty')
-      continue
-    secondElIndex = indexSecondBut(sec)
-    if secondElIndex == -1:
-      print('Second bottle is full')
-      continue
-    if secondElIndex == 3 or sec[secondElIndex + 1] == b2[firstElIndex]:
-      sec[secondElIndex] = b2[firstElIndex]
-      b2[firstElIndex] = '0'
-    else:
-      print("It's not the same color")
-
-# ----------------------------------
-  elif firstSel == '3':
-    if b3 is sec:
-      print("I can't pour it into the same bottle.")
-      continue
-    firstElIndex = indexFirstBut(b3)
-    if firstElIndex == -1:
-      print('First bottle is empty')
-      continue
-    secondElIndex = indexSecondBut(sec)
-    if secondElIndex == -1:
-      print('Second bottle is full')
-      continue
-    if secondElIndex == 3 or sec[secondElIndex + 1] == b3[firstElIndex]:
-      sec[secondElIndex] = b3[firstElIndex]
-      b3[firstElIndex] = '0'
-    else:
-      print("It's not the same color")
-
-# ----------------------------------
-  elif firstSel == '4':
-    if b4 is sec:
-      print("I can't pour it into the same bottle.")
-      continue
-    firstElIndex = indexFirstBut(b4)
-    if firstElIndex == -1:
-      print('First bottle is empty')
-      continue
-    secondElIndex = indexSecondBut(sec)
-    if secondElIndex == -1:
-      print('Second bottle is full')
-      continue
-    if secondElIndex == 3 or sec[secondElIndex + 1] == b4[firstElIndex]:
-      sec[secondElIndex] = b4[firstElIndex]
-      b4[firstElIndex] = '0'
-    else:
-      print("It's not the same color")
-
-# ----------------------------------
-  elif firstSel == '5':
-    if b5 is sec:
-      print("I can't pour it into the same bottle.")
-      continue
-    
-    firstElIndex = indexFirstBut(b5)
-    if firstElIndex == -1:
-      print('First bottle is empty')
-      continue
-    secondElIndex = indexSecondBut(sec)
-    if secondElIndex == -1:
-      print('Second bottle is full')
-      continue
-    if secondElIndex == 3 or sec[secondElIndex + 1] == b5[firstElIndex]:
-      sec[secondElIndex] = b5[firstElIndex]
-      b5[firstElIndex] = '0'
-    else:
-      print("It's not the same color")
+  change(int(firstSel) - 1, sec)
