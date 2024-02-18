@@ -1,8 +1,8 @@
-b1 = ['0', 'b', 'b', 'b']
-b2 = ['0', '0', 'g', 'g']
-b3 = ['0', 'r', 'r', 'r']
-b4 = ['0', '0', 'g', 'b']
-b5 = ['0', '0', 'g', 'r']
+b1 = ['b', 'b', 'b', 'b']
+b2 = ['g', 'g', 'g', 'g']
+b3 = ['r', 'r', 'r', 'r']
+b4 = ['0', '0', '0', '0']
+b5 = ['0', '0', '0', '0']
 flag1 = False
 flag2 = False
 flag3 = False
@@ -58,6 +58,25 @@ def indexSecondBut(but:list):
     q -= 1
   return -1
 
+def change(selectedOne, selectedTwo):
+  listOfSel = [b1, b2, b3, b4, b5]
+  if listOfSel[int(selectedOne) - 1] is selectedTwo:
+    print("I can't pour it into the same bottle.")
+    continue
+  firstElIndex = indexFirstBut(listOfSel[int(selectedOne)])
+  if firstElIndex == -1:
+    print('First bottle is empty')
+    continue
+  secondElIndex = indexSecondBut(sec)
+  if secondElIndex == -1:
+    print('Second bottle is full')
+    continue
+  if secondElIndex == 3 or sec[secondElIndex + 1] == listOfSel[selectedOne][firstElIndex]:
+    sec[secondElIndex] = listOfSel[selectedOne][firstElIndex]
+    listOfSel[selectedOne][firstElIndex] = '0'
+  else:
+    print("It's not the same color")
+
 while True: 
   showButs()
   win = checkWin()
@@ -67,16 +86,13 @@ while True:
 
   firstSel = input('введите с какой колбы берем: ')
   secondSel = input('введите в какую колбу наливаем: ')
-  if secondSel == '1':
-    sec = b1
-  elif secondSel == '2':
-    sec = b2
-  elif secondSel == '3':
-    sec = b3
-  elif secondSel == '4':
-    sec = b4
-  elif secondSel == '5':
-    sec = b5
+  tempListB = [b1, b2, b3, b4, b5]
+  if secondSel == "1" or
+     secondSel == "2" or
+     secondSel == "3" or
+     secondSel == "4" or
+     secondSel == "5":
+    sec = tempListB[int(secondSel)]
   else:
     print('incorrect second input')
     continue
@@ -85,6 +101,8 @@ while True:
     print('incorrect first input')
     continue
   
+  change(firstSel, sec)
+# По идее дальнейший код не нужен, его удалить
 # ----------------------------------
   if firstSel == '1':
     if b1 is sec:
