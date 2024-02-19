@@ -68,7 +68,27 @@ def change(selectedOne:int, selectedTwo:list):
 
 def newGame():
   # Количество запутанности в начале игры.
-  countOfChange = 10
+  flag = True
+  while flag:
+
+    countOfChange = input('Введите уровень сложности от 1 до 5: ')
+    if countOfChange == '1':
+      countOfChange = int(countOfChange) * 10
+      flag = False
+    elif countOfChange == '2':
+      countOfChange = int(countOfChange) * 20
+      flag = False
+    elif countOfChange == '3':
+      countOfChange = int(countOfChange) * 30
+      flag = False
+    elif countOfChange == '4':
+      countOfChange = int(countOfChange) * 35
+      flag = False
+    elif countOfChange == '5':
+      countOfChange = int(countOfChange) * 40
+      flag = False
+    else:
+      print('Некорректный ввод') 
   
   while countOfChange > 0:
     flag = True
@@ -137,4 +157,4 @@ while True:
     continue
   
   change(int(firstSel) - 1, sec)
-input('Нажмите любую клавишу для завершения программы')
+input('Нажмите "Enter" для завершения программы')
